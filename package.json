@@ -1,0 +1,13 @@
+{
+  "name": "zotero-for-onlyoffice",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Zotero citations in the ONLYOFFICE desktop editors, with Zotero's own citation dialog on Cmd/Ctrl+Shift+C",
+  "license": "AGPL-3.0-only",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node --test test/convert.test.js test/bridge.test.js",
+    "install-plugin": "node install.js",
+    "icons": "sh scripts/build-icons.sh"
+  }
+}

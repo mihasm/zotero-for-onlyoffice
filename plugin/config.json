@@ -1,0 +1,19 @@
+{
+	"name": "Zotero for ONLYOFFICE",
+	"guid": "asc.{815C6DE9-AB04-4CB1-893E-AAE76398B9A5}",
+	"version": "1.0.0",
+	"variations": [
+		{
+			"description": "Zotero citations as in Word and LibreOffice: Cmd/Ctrl+Shift+C opens Zotero's citation dialog, Enter inserts the citation.",
+			"url": "index.html",
+			"icons": "resources/%theme-type%(light|dark)/icon%scale%(default).%extension%(png)",
+			"isViewer": false,
+			"EditorsSupport": ["word"],
+			"type": "background",
+			"initDataType": "none",
+			"initData": "",
+			"buttons": [],
+			"events": ["onToolbarMenuClick"]
+		}
+	]
+}

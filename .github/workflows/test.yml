@@ -1,0 +1,34 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [18, 22]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node --check install.js
+      - run: node --check plugin/zotero.js
+      - run: node --check bridge/zotero-for-onlyoffice-bridge.js
+      - run: npm test
+      - name: install, check, uninstall (Linux and Windows)
+        if: runner.os != 'macOS'
+        shell: bash
+        run: |
+          node install.js
+          node install.js --status | tee status.txt
+          grep -q "bridge     running" status.txt
+          node install.js --uninstall
+      - name: dry run (macOS, no login session for a LaunchAgent)
+        if: runner.os == 'macOS'
+        run: node install.js --dry-run
